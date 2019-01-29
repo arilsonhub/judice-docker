@@ -1,0 +1,40 @@
+tomcat:
+    build: .
+    links:
+      - judiceDBContainer
+    dockerfile: ./Dockerfile    
+    ports:
+      - "3000:8080"
+      - "8000:8000"
+      - "9009:8009"       
+    environment:
+      JPDA_ADDRESS: 8000
+      JPDA_TRANSPORT: dt_socket
+    entrypoint: /usr/local/tomcat/bin/catalina.sh jpda run
+    volumes:     
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ./opt/judice/imagens:/opt/judice/imagens
+      - ./opt/judice/imagens/atendentes:/opt/judice/imagens/atendentes
+      - ./opt/judice/imagens/clientes:/opt/judice/imagens/clientes
+      - ./opt/judice/imagens/pacotes:/opt/judice/imagens/pacotes
+      - ./opt/judice/imagens/processos:/opt/judice/imagens/processos
+      - ./opt/judice/imagens/rastreios:/opt/judice/imagens/rastreios
+      - ./opt/judice/imagens/temp:/opt/judice/imagens/temp
+      - ./hosts:/etc/hosts
+      - ./tomcat/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml
+      - ./tomcat/server.xml:/usr/local/tomcat/conf/server.xml
+      - ./tomcat/context.xml:/usr/local/tomcat/conf/context.xml
+      - ./tomcat/manager/context.xml:/usr/local/tomcat/webapps/manager/META-INF/context.xml
+      - ./tomcat/host-manager/context.xml:/usr/local/tomcat/webapps/host-manager/META-INF/context.xml
+      - ./tomcat/host-manager/manager.xml:/usr/local/tomcat/webapps/host-manager/manager.xml
+
+judiceDBContainer:
+    image: postgres:9.5    
+    ports:
+       - "5432:5432"
+    environment:
+      POSTGRES_USER: "judice-v2"
+      POSTGRES_PASSWORD: "judice-v2"
+    volumes:
+       - ./data/postgres:/var/lib/postgresql/data      
