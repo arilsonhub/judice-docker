@@ -1,6 +1,6 @@
 #!/bin/bash
 
-homePath="home/arilson"
+homePath="home/$2"
 workspacePath="eclipse-workspace"
 projectPath=$1
 contextFolderPath="/$homePath/$workspacePath/$projectPath/context/"
