@@ -9,6 +9,7 @@ containerContextPath="/usr/local/tomcat/webapps/judice"
 
 cd /
 cd $contextFolderPath
+docker cp image/. $containerName:$containerContextPath/image/
 docker cp main/. $containerName:$containerContextPath/main/
 docker cp module/. $containerName:$containerContextPath/module/
 docker cp script/. $containerName:$containerContextPath/script/
