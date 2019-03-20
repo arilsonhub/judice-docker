@@ -1,0 +1,10 @@
+FROM postgres:9.5
+
+RUN locale-gen pt_BR.UTF-8 && \
+	localedef -i pt_BR -c -f UTF-8 -A /usr/share/locale/locale.alias pt_BR.utf-8
+
+ENV LANG pt_BR.UTF-8
+  
+ENV LANGUAGE pt_BR:pt:en
+  
+ENV LC_ALL pt_BR.UTF-8  

@@ -28,6 +28,7 @@ tomcat:
       - ./tomcat/manager/context.xml:/usr/local/tomcat/webapps/manager/META-INF/context.xml
       - ./tomcat/host-manager/context.xml:/usr/local/tomcat/webapps/host-manager/META-INF/context.xml
       - ./tomcat/host-manager/manager.xml:/usr/local/tomcat/webapps/host-manager/manager.xml
+      - ./tomcat/catalina.sh:/usr/local/tomcat/bin/catalina.sh
 
 judiceDBContainer:
     image: postgres:9.5    
@@ -37,4 +38,4 @@ judiceDBContainer:
       POSTGRES_USER: "judice-v2"
       POSTGRES_PASSWORD: "judice-v2"
     volumes:
-       - ./data/postgres:/var/lib/postgresql/data      
+       - ./data/postgres:/var/lib/postgresql/data
