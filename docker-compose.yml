@@ -39,3 +39,5 @@ judiceDBContainer:
       POSTGRES_PASSWORD: "judice-v2"
     volumes:
        - ./data/postgres:/var/lib/postgresql/data
+       - /etc/localtime:/etc/localtime:ro
+       - /etc/timezone:/etc/timezone:ro
